@@ -1,7 +1,37 @@
 {
   "name": "now-bot",
   "version": "0.0.1",
-  "description": "The facebook-chatbot interface for Now",
-  "license": "MIT",
-  "repository": "fmiras/now-bot"
+  "description": "The facebook messenger-chatbot interface for Now",
+  "repository": "fmiras/now-bot",
+  "keywords": [
+    "now",
+    "chatbot",
+    "now-bot",
+    "messenger",
+    "micro"
+  ],
+  "scripts": {
+    "precommit": "xo --quiet && lint-staged",
+    "test": "xo"
+  },
+  "xo": {
+    "extends": "prettier"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run test",
+      "prettier --single-quote --no-semi --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "micro": "7.3.2"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "1.7.0",
+    "husky": "0.13.3",
+    "lint-staged": "3.4.1",
+    "prettier": "1.3.1",
+    "xo": "0.18.2"
+  }
 }
