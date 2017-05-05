@@ -1,0 +1,7 @@
+{
+  "name": "now-bot",
+  "version": "0.0.1",
+  "description": "The facebook-chatbot interface for Now",
+  "license": "MIT",
+  "repository": "fmiras/now-bot"
+}
