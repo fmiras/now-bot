@@ -36,6 +36,12 @@
       "es2015"
     ]
   },
+  "now": {
+    "alias": "now-bot.fmiras.com",
+    "env": {
+      "ACCESS_TOKEN": "@facebook-access-token"
+    }
+  },
   "dependencies": {
     "babel-runtime": "6.23.0",
     "micro": "7.3.2",
