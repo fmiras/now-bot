@@ -24,3 +24,12 @@ test('List 2 real deployments', async () => {
   expect(answer.attachment.payload.buttons[0].url)
     .toBe('my-project-wtbxvynenu.now.sh')
 })
+
+test('Try to list a non-deployment account', async () => {
+  const emptyNow = {}
+  emptyNow.getDeployments = async () => []
+  BotRewireApi.__Rewire__('now', emptyNow)
+
+  const answer = await ask(undefined, 'List all my deployments')
+  expect(answer.text).toBe('There are no deployments for this account!')
+})
