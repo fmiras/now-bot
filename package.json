@@ -23,7 +23,11 @@
     ]
   },
   "standard": {
-    "globals": [ "test", "expect" ]
+    "globals": [
+      "test",
+      "expect",
+      "beforeEach"
+    ]
   },
   "babel": {
     "plugins": [
@@ -44,12 +48,14 @@
   "now": {
     "alias": "now-bot.fmiras.com",
     "env": {
-      "ACCESS_TOKEN": "@facebook-access-token",
-      "VERIFY_TOKEN": "@facebook-verify-token"
+      "FB_ACCESS_TOKEN": "@facebook-access-token",
+      "FB_VERIFY_TOKEN": "@facebook-verify-token",
+      "FIREBASE_PRIVATE_KEY": "@firebase-private-key"
     }
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
+    "firebase": "3.9.0",
     "micro": "7.3.2",
     "microrouter": "2.1.0",
     "now": "5.2.3",

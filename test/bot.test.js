@@ -1,23 +1,13 @@
-import { ask, __RewireAPI__ as BotRewireApi } from '../lib/bot'
+import {nowMock, emptyNow} from './mock/now'
+import {ask, __RewireAPI__ as BotRewireApi} from '../lib/bot'
+
+beforeEach(() => {
+  BotRewireApi.__Rewire__('isAuthenticated', async () => true)
+  BotRewireApi.__Rewire__('getToken', async () => 'no-token')
+})
 
 test('List 2 real deployments', async () => {
-  const nowMock = {}
-  nowMock.getDeployments = async () => [
-    {
-      uid: '7Npest0z1zW5QVFfNDBId4BW',
-      name: 'my-project',
-      url: 'my-project-wtbxvynenu.now.sh',
-      created: '1460801613968'
-    },
-    {
-      uid: 'dOgCUIoovYiYmXbrLX0h9qDk',
-      name: 'project-b',
-      url: 'project-b-iipihlfrpa.now.sh',
-      created: '1462738579605'
-    }
-  ]
-
-  BotRewireApi.__Rewire__('now', nowMock)
+  BotRewireApi.__Rewire__('NowClient', nowMock)
 
   const answer = await ask(undefined, 'List all my deployments')
   expect(answer.attachment.payload.buttons.length).toBe(2)
@@ -26,9 +16,7 @@ test('List 2 real deployments', async () => {
 })
 
 test('Try to list a non-deployment account', async () => {
-  const emptyNow = {}
-  emptyNow.getDeployments = async () => []
-  BotRewireApi.__Rewire__('now', emptyNow)
+  BotRewireApi.__Rewire__('NowClient', emptyNow)
 
   const answer = await ask(undefined, 'List all my deployments')
   expect(answer.text).toBe('There are no deployments for this account!')
