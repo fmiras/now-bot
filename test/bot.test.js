@@ -2,7 +2,6 @@ import {nowMock, emptyNow} from './mock/now'
 import {ask, __RewireAPI__ as BotRewireApi} from '../lib/bot'
 
 beforeEach(() => {
-  BotRewireApi.__Rewire__('isAuthenticated', async () => true)
   BotRewireApi.__Rewire__('getToken', async () => 'no-token')
 })
 
