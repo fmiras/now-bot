@@ -1,7 +1,10 @@
 import {nowMock, emptyNow} from './mock/now'
 import {ask, __RewireAPI__ as BotRewireApi} from '../lib/bot'
+import messages from '../lib/bot/messages'
 
 beforeEach(() => {
+  // We mock this so the test don't try to actually send a request to FB
+  BotRewireApi.__Rewire__('sendMessage', async () => undefined)
   BotRewireApi.__Rewire__('getToken', async () => 'no-token')
 })
 
