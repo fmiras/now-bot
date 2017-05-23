@@ -27,7 +27,7 @@ test('Try to list a non-deployment account', async () => {
 test('List deployments with account with too many links', async () => {
   BotRewireApi.__Rewire__('NowClient', bigNow)
   const answer = await ask(undefined, 'List all my deployments')
-  expect(answer.attachment.payload.buttons.length).toBeLessThan(6)
+  expect(answer.attachment.payload.buttons.length).toBeLessThan(4)
 })
 
 test('Do anything without authentication', async () => {
