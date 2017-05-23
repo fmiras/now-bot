@@ -1,4 +1,4 @@
-import {nowMock, emptyNow} from './mock/now'
+import {nowMock, emptyNow, bigNow} from './mock/now'
 import {ask, __RewireAPI__ as BotRewireApi} from '../lib/bot'
 import messages from '../lib/bot/messages'
 
@@ -22,6 +22,12 @@ test('Try to list a non-deployment account', async () => {
 
   const answer = await ask(undefined, 'List all my deployments')
   expect(answer.text).toBe(messages.NO_DEPLOYMENTS)
+})
+
+test('List deployments with account with too many links', async () => {
+  BotRewireApi.__Rewire__('NowClient', bigNow)
+  const answer = await ask(undefined, 'List all my deployments')
+  expect(answer.attachment.payload.buttons.length).toBeLessThan(6)
 })
 
 test('Do anything without authentication', async () => {
