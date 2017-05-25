@@ -24,9 +24,10 @@
   },
   "standard": {
     "globals": [
-      "test",
+      "beforeEach",
       "expect",
-      "beforeEach"
+      "jest",
+      "test"
     ]
   },
   "babel": {
