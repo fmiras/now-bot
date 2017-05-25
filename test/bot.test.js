@@ -1,15 +1,16 @@
-import {nowMock, emptyNow, bigNow} from './mock/now'
+import {nowStub, emptyNow, bigNow} from './stub/now'
 import {ask, __RewireAPI__ as BotRewireApi} from '../lib/bot'
 import messages from '../lib/bot/messages'
 
 beforeEach(() => {
-  // We mock this so the test don't try to actually send a request to FB
+  // We stub this so the test don't try to actually send a request to FB
   BotRewireApi.__Rewire__('sendMessage', async () => undefined)
+  // This is to simulate an authenticated session
   BotRewireApi.__Rewire__('getToken', async () => 'no-token')
 })
 
 test('List 2 real deployments', async () => {
-  BotRewireApi.__Rewire__('NowClient', nowMock)
+  BotRewireApi.__Rewire__('NowClient', nowStub)
 
   const answer = await ask(undefined, 'List all my deployments')
   expect(answer.attachment.payload.buttons.length).toBe(2)
@@ -54,7 +55,7 @@ test('First authentication for user with invalid token', async () => {
   expect(answer.text).toBe(messages.INVALID_TOKEN)
 })
 
-test('First authentication with firebase unavailable', async () => {
+test('First authentication with mongo unavailable', async () => {
   BotRewireApi.__Rewire__('getToken', async () => undefined)
   BotRewireApi.__Rewire__('validateToken', async () => true)
   BotRewireApi.__Rewire__('newUser', async () => {
@@ -63,4 +64,9 @@ test('First authentication with firebase unavailable', async () => {
 
   const answer = await ask(undefined, '24-digits-text-as-token!')
   expect(answer.text).toBe(messages.SERVICE_UNAVAILABLE)
+})
+
+test('Unknown question, answer with generic message', async () => {
+  const answer = await ask(undefined, 'Make an Expecto Patronum!')
+  expect(answer.text).toBe(messages.UNKNOWN)
 })

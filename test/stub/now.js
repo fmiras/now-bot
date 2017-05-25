@@ -1,4 +1,4 @@
-export function nowMock () {
+export function nowStub () {
   this.getDeployments = async () => [
     {
       uid: '7Npest0z1zW5QVFfNDBId4BW',
