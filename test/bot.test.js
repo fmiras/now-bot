@@ -89,3 +89,19 @@ test('Unknown question, answer with generic message', async () => {
   const answer = await ask(undefined, 'Make an Expecto Patronum!')
   expect(answer.text).toBe(messages.UNKNOWN)
 })
+
+// Deployments
+test('Deploy a GitHub project', async () => {
+  const nowMock = jest.fn()
+  BotRewireApi.__Rewire__('now', nowMock)
+  const deploymentUrl = 'my-project-wtbxvyaenu.now.sh'
+  nowMock.mockReturnValueOnce(deploymentUrl)
+  const sendMessageMock = jest.fn()
+  BotRewireApi.__Rewire__('sendMessage', sendMessageMock)
+
+  const answer = await ask(undefined, 'Deploy fmiras/site')
+  expect(sendMessageMock.mock.calls[0][1].text).toBe(messages.DEPLOYING)
+  expect(nowMock.mock.calls[0][0]).toBe('fmiras/site')
+  expect(answer.text).toBe(messages.DEPLOYMENT_OK.replace('{deployment_url}',
+    deploymentUrl))
+})
