@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "babel-runtime": "6.23.0",
+    "child-process-promise": "2.2.1",
     "micro": "7.3.2",
     "microrouter": "2.1.0",
     "mongodb": "2.2.26",
