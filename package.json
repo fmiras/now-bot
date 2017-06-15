@@ -13,6 +13,7 @@
   "main": "dist/server",
   "scripts": {
     "build": "babel lib --out-dir dist",
+    "dev": "node dev/server",
     "precommit": "lint-staged",
     "start": "micro",
     "test": "standard && jest"
@@ -51,7 +52,7 @@
     "env": {
       "FB_ACCESS_TOKEN": "@facebook-access-token",
       "FB_VERIFY_TOKEN": "@facebook-verify-token",
-      "MONGO_PASSWORD": "@mongo-password"
+      "MONGO_URL": "@now-bot-mongo-url"
     }
   },
   "dependencies": {
