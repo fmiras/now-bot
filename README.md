@@ -4,8 +4,8 @@ This repository is an attempt of making [ZEIT Now](https://zeit.co/now) more acc
 
 This project is a proof of concept to make a chatbot achieve the behavior described on the images below:
 
-![img](https://scontent.faep8-2.fna.fbcdn.net/v/t34.0-12/18217041_10213873479657624_1305106505_n.png?oh=6ca19ec6abb01d67dd355e4cb0044b06&oe=5A9BCA7E)
-![img](https://scontent.faep8-2.fna.fbcdn.net/v/t34.0-12/18191641_10213873518298590_1945993408_n.png?oh=a2e64fa3b56b6a5bd1a63c8d44e0084a&oe=5A9B4060)
+![img](https://imgur.com/GoCty6H.png)
+![img](https://imgur.com/AGJREtV.png)
 
 This is and old project with [issues](https://github.com/fmiras/now-bot/issues) I recently open to be adapted with new tech.
 The main goals is to have support for [facebook messenger](https://messenger.fb.com/developers) (or [workplace](https://work.facebook.com)) and [slack](https://slack.com). Of course other team chat platforms all welcome to be developed!
